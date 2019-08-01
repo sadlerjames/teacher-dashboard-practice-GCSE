@@ -56,7 +56,6 @@ To get this teacher portal up and running locally:
 ```
 SECRET_KEY = "<--Replace with random text (no spaces in it)-->"
 PORT = 3000
-
 ```
 
 3. Start the dashboard
