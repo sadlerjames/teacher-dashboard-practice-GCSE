@@ -1,20 +1,48 @@
-# Dashboard Template - Node and Vue
-This is a Node and Vue powered dashboard that consists of a Login and Signup form as well as a dashboard for the user to interact with.
-The purpose of this is just a template that can be used in other projects.
+# Teacher Dashboard
+This is a practice Computer Science GCSE programming task: a teacher dashboard, to be completed in 20 hours worth of coding time
 
-To compile this from source you need Node.js installed. You will also need to have a database setup, with a table called users. To create this table run the following command:
+Note: this project uses a data.json file to store dummy data for illustrative purposes. If this project was used in a production environment then you would want to use a database instead of a json file, for example mongoDB, mySQL or etc.
 
-```
-CREATE TABLE users(
-    id INT,
-    email VARCHAR(255),
-    password VARCHAR(255),
-    createdAt VARCHAR(255),
-    updatedAt VARCHAR(255)
-);
-```
+# Scenario
+When new students arrive at Tree Road School, they are assigned:
+- a unique ID number
+- a tutor group
+- a unique school email address
 
-To get this dashboard up and running locally:
+A tutor group contains approximately 25 male and female students.
+
+Mr Leeman is a form tutor and wants a simple computer system to manage his tutor group.
+
+Mr Leeman wants to be able to have a user friendly interface that allows him to log into the system and carry out the necessary administration.
+
+The details of the students that Mr Leeman needs are:
+
+- unique ID number
+- surname
+- forename
+- date of birth
+- home address
+- home phone number
+- gender
+- tutor group
+- unique school email address
+
+Analyse the requirements for this system and design, develop, test and evaluate a program that allows Mr Leeman to:
+
+1. log in with a username and password
+2. access a menu system
+3. enter and store the students details
+4. log out
+5. retrieve and display the details of any student when Mr Leeman enters the student's unique ID number
+6. create at least three different reports that Mr Leeman might need, and describe how he would use each one
+7. produce these reports when selected from a menu
+
+# Running the dashboard
+
+To compile this project from source you need Node.js installed. If you install it from the official website, it will then come with npm, which is also needed for this project to run.
+
+
+To get this teacher portal up and running locally:
 1. Clone the repository
 
  `git clone https://github.com/sadlerjames/dashboard-template`
@@ -28,11 +56,7 @@ To get this dashboard up and running locally:
 ```
 SECRET_KEY = "<--Replace with random text (no spaces in it)-->"
 PORT = 3000
-DB_HOST = "<--Replace with your database host-->"
-DB_USERNAME = "<--Replace with your database username-->"
-DB_PASSWORD = "<--Replace with your database password-->"
-DB_NAME = "<--Replace with your database name-->"
-DB_DIALECT = "<--Replace with your database dialect (e.g. mysql, sqlite ...)-->"
+
 ```
 
 3. Start the dashboard
@@ -41,7 +65,6 @@ DB_DIALECT = "<--Replace with your database dialect (e.g. mysql, sqlite ...)-->"
 
 4. Finally go to http://localhost:3000/ to see the project!
 
-However, if you would like to use this repository as a template then click on the "Use this template" button and follow the required steps. After following the required steps follow steps 2 and onwards.
 
 Everytime you want to run the dashboard, run:
 
