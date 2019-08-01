@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const usermodel = require('../models/user');
-const allinfo = require('../models/user').allinfo;
-const verifyToken = require('../middleware/verifyToken').verifyToken;
+const allinfo = require('../utils/find.js').allinfo;
 
 require('dotenv').config();
 
@@ -26,9 +24,9 @@ module.exports = {
                         success: false
                     });
                 } else {
-                    //get the password stored in the database that matches the email entered
+                    //get the password stored in the json that matches the email entered
                     let dbpassword = r.password;
-                    //compare the inputed password to the hashed password in the database
+                    //compare the inputed password to the hashed password in the json
                     let compare = bcrypt.compareSync(password, dbpassword);
                     if (compare === true) {
                         //create a json web token

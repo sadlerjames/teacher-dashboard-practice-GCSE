@@ -1,0 +1,30 @@
+{
+    "teachers": [
+        {
+            "name": "Leeman",
+            "email": "leeman@treeroad.com",
+            "password": "$2b$10$n9/yrvBuZn9vKPR4UaD.wu4gc2LbozeFrCRE/gIsOukLxmyxcQHMu",
+            "formGroup": "3e",
+            "id": "4es5s"
+        }
+    ],
+    "pupils": [
+        {
+            "surname": "jones",
+            "forename": "craig",
+            "dob": "2004-06-11",
+            "homeAddress": "05 Kenilworth Avenue",
+            "homePhone": "074958374563",
+            "gender": "male",
+            "tutorGroup": "3e",
+            "schoolEmail": "21cjones@treeroad.com",
+            "grades": [
+                {
+                    "french": 8,
+                    "maths": 7
+                }
+            ],
+            "id": "4fnqd"
+        }
+    ]
+}
