@@ -16,7 +16,7 @@ import auth from "./auth.js";
 //pages
 import App from './App.vue'
 import Login from './views/login.vue'
-import About from './views/about.vue'
+import Create from './views/create.vue'
 import Signup from './views/signup.vue'
 import Dashboard from './views/dash.vue'
 import Logout from './views/logout.vue'
@@ -62,7 +62,7 @@ const router = new VueRouter({
     //example:     {path: '/', beforeEnter: guard, component: About}
     { path: '/', beforeEnter: guard, component: Dashboard },
     { path: '/login', beforeEnter: loggedIn, component: Login },
-    { path: '/about', beforeEnter: guard, component: About},
+    { path: '/create', beforeEnter: guard, component: Create},
     { path: '/signup', beforeEnter: loggedIn, component: Signup },
     { path: '/logout', beforeEnter: logout, component: Logout}
   ]

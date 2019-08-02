@@ -23,8 +23,12 @@ app.get('/', (req, res) => {
 
 app.set('SECRET_KEY', process.env.SECRET_KEY); // jwt secret key used for signing/verification
 
+//user route
 const user = require('./server/routes/user');
 app.use('/api/v1/user', user);
+//student route
+const student = require('./server/routes/student');
+app.use('/api/v1/student', student);
 
 //listen for the port
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

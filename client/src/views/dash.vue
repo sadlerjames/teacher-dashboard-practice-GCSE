@@ -1,8 +1,14 @@
 <template>
   <div>
     <Nav></Nav>
-    <h1 class="text-center">Welcome to the Dashboard</h1>
-    <p class="text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni qui neque accusantium sit itaque eligendi id cum, placeat minima eius quo quaerat, amet similique eum ipsum non distinctio. Modi, reprehenderit!</p>
+    <h1 class="text-center">Welcome to Tree Roads Teacher Portal</h1>
+    <p class="text-center">Here on this portal you will be able to:</p>
+    <ul class="text-center">
+      <li>Search for Students</li>
+      <li>Create students</li>
+      <li>Generate Reports for students</li>
+    </ul>
+    
   </div>
 </template>
 
@@ -10,6 +16,6 @@
 import Nav from "../components/nav";
 export default {
   name: "app",
-  components: {Nav}
+  components: { Nav }
 };
 </script>
