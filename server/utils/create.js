@@ -2,7 +2,7 @@ var fs = require('fs');
 var _ = require("underscore");
 
 module.exports = {
-  create: function (forename, surname, dob, address, phone, gender, tutor, userid, callback) {    
+  create: function (forename, surname, dob, address, phone, gender, tutor, userid, email, callback) {    
     let studentdetails = {
       forename: forename,
       surname: surname,
@@ -11,7 +11,9 @@ module.exports = {
       homePhone: phone,
       gender: gender,
       tutorGroup: tutor,
-      id: userid
+      id: userid,
+      email: email,
+      grades: []
     };
 
     let existdata = fs.readFileSync('data.json');

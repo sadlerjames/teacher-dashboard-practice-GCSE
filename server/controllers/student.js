@@ -15,9 +15,11 @@ module.exports = {
             let gender = req.body.gender;
             let tutor = req.body.tutor;
             let userid = genId();
+            let studentemail = surname + forename.charAt(0) + '@treeroad.com';
+            let email = studentemail.toLowerCase();
 
             //call the all info function, with the email variable in the parameter
-            createstudent(forename, surname, dob, address, phone, gender, tutor, userid, function (r) {
+            createstudent(forename, surname, dob, address, phone, gender, tutor, userid, email, function (r) {
                 //r is the result of the callback
                 if (r === undefined || r.length == 0) {
                     // array empty or does not exist
