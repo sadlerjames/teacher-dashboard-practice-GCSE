@@ -23,7 +23,7 @@ export default {
       next(data["success"]);
     }
   },
-  
+
   async create(email, password, next) {
     //send a request to the back end
     let response = await axios.post('/api/v1/user/create', querystring.stringify({
@@ -54,12 +54,19 @@ export default {
       //return true
       return true;
     }
-  }, 
+  },
 
   async getAuthData(cookie, next) {
     let response = await axios.post('/api/v1/user/authdata', querystring.stringify({
       cookie: cookie
     }));
+    //store the response from the request in a variable
+    let data = await response.data;
+    next(data);
+  },
+
+  async getStudents(next) {
+    let response = await axios.post('/api/v1/student/allstudents');
     //store the response from the request in a variable
     let data = await response.data;
     next(data);

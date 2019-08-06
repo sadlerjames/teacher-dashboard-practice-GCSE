@@ -1,5 +1,6 @@
 const createstudent = require('../utils/create.js').create;
 const genId = require('../utils/randomGen.js').genId;
+const allStudents = require('../utils/find.js').allStudents;
 
 require('dotenv').config();
 
@@ -29,6 +30,30 @@ module.exports = {
                 } else {
                     res.json({
                         success: true
+                    });
+                }
+            });
+        } catch (err) {
+            // pass any errors on
+            console.log(err);
+            res.json({
+                success: false
+            });
+        }
+    },
+    allStudents: function (req, res) {
+        try {
+            allStudents(function (r) {
+                //r is the result of the callback
+                if (r === undefined || r.length == 0) {
+                    // array empty or does not exist
+                    res.json({
+                        success: false
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        data: { students: r }
                     });
                 }
             });
