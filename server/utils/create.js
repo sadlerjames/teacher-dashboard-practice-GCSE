@@ -12,7 +12,7 @@ module.exports = {
       gender: gender,
       tutorGroup: tutor,
       id: userid,
-      email: email,
+      schoolEmail: email,
       grades: []
     };
 

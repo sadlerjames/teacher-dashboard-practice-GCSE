@@ -3,7 +3,23 @@
     <Nav></Nav>
     <h1 class="text-center">Welcome to Tree Roads Teacher Portal</h1>
     <h1>All students</h1>
-    <b-table striped hover small :items="items" :fields="fields"></b-table>
+    <b-table
+      id="all-students"
+      :items="items"
+      :per-page="perPage"
+      :current-page="currentPage"
+      striped
+      hover
+      small
+      :fields="fields"
+    ></b-table>
+    <p class="mt-3">Current Page: {{ currentPage }}</p>
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+      aria-controls="all-students"
+    ></b-pagination>
   </div>
 </template>
 
@@ -15,7 +31,8 @@ export default {
   components: { Nav },
   data() {
     return {
-      // Note 'age' is left out and will not appear in the rendered table
+      perPage: 5,
+      currentPage: 1,
       fields: {
         surname: {
           label: "Last Name",

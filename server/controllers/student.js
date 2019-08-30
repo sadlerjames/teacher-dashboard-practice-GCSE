@@ -1,6 +1,8 @@
 const createstudent = require('../utils/create.js').create;
 const genId = require('../utils/randomGen.js').genId;
 const allStudents = require('../utils/find.js').allStudents;
+const allStudentData = require('../utils/find.js').allData;
+const personalUpdate = require('../utils/update.js').personalUpdate;
 
 require('dotenv').config();
 
@@ -54,6 +56,60 @@ module.exports = {
                     res.json({
                         success: true,
                         data: { students: r }
+                    });
+                }
+            });
+        } catch (err) {
+            // pass any errors on
+            console.log(err);
+            res.json({
+                success: false
+            });
+        }
+    },
+    allData: function (req, res) {
+        try {
+            let studentid = req.body.id;
+            allStudentData(studentid, function (r) {
+                //r is the result of the callback
+                if (r === undefined || r.length == 0) {
+                    // array empty or does not exist
+                    res.json({
+                        success: false
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        data: { data: r }
+                    });
+                }
+            });
+        } catch (err) {
+            // pass any errors on
+            console.log(err);
+            res.json({
+                success: false
+            });
+        }
+    },
+    personalUpdate: function (req, res) {
+        try {
+            let id = req.body.id;
+            let forename = req.body.forename;
+            let surname = req.body.surname;
+            let dob = req.body.dob;
+            let gender = req.body.gender;
+            personalUpdate(id, forename, surname, dob, gender, function (r) {
+                //r is the result of the callback
+                if (r === undefined || r.length == 0) {
+                    // array empty or does not exist
+                    res.json({
+                        success: false
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        data: { data: r }
                     });
                 }
             });

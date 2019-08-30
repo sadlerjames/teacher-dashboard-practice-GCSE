@@ -20,6 +20,7 @@ import Create from './views/create.vue'
 import Signup from './views/signup.vue'
 import Dashboard from './views/dash.vue'
 import Logout from './views/logout.vue'
+import Student from './views/student.vue'
 
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
@@ -64,7 +65,8 @@ const router = new VueRouter({
     { path: '/login', beforeEnter: loggedIn, component: Login },
     { path: '/create', beforeEnter: guard, component: Create},
     { path: '/signup', beforeEnter: loggedIn, component: Signup },
-    { path: '/logout', beforeEnter: logout, component: Logout}
+    { path: '/logout', beforeEnter: logout, component: Logout},
+    { path: '/student/:id', beforeEnter: guard, component: Student}
   ]
 })
 
