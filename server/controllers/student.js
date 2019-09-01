@@ -3,6 +3,7 @@ const genId = require('../utils/randomGen.js').genId;
 const allStudents = require('../utils/find.js').allStudents;
 const allStudentData = require('../utils/find.js').allData;
 const personalUpdate = require('../utils/update.js').personalUpdate;
+const schoolUpdate = require('../utils/update.js').schoolUpdate;
 
 require('dotenv').config();
 
@@ -100,6 +101,32 @@ module.exports = {
             let dob = req.body.dob;
             let gender = req.body.gender;
             personalUpdate(id, forename, surname, dob, gender, function (r) {
+                //r is the result of the callback
+                if (r === undefined || r.length == 0) {
+                    // array empty or does not exist
+                    res.json({
+                        success: false
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        data: { data: r }
+                    });
+                }
+            });
+        } catch (err) {
+            // pass any errors on
+            console.log(err);
+            res.json({
+                success: false
+            });
+        }
+    },
+    schoolUpdate: function (req, res) {
+        try {
+            let id = req.body.id;
+            let tutorGroup = req.body.tutorGroup;
+            schoolUpdate(id, tutorGroup, function (r) {
                 //r is the result of the callback
                 if (r === undefined || r.length == 0) {
                     // array empty or does not exist

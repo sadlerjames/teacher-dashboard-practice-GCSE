@@ -60,6 +60,23 @@ export default {
       //return false
       next(data["success"]);
     }
+  },
+  async schoolUpdate(id, tutorGroup, next) {
+    //send request to the backend
+    let response = await axios.post('/api/v1/student/schoolupdate', querystring.stringify({
+      id: id,
+      tutorGroup: tutorGroup
+    }));
+    //store the response from the request in a variable
+    let data = await response.data;
+    //if the api returns with a success true message then continue with the script else return an error
+    if (data["success"] === true) {
+      //return that everything was successful
+      next(data);
+    } else {
+      //return false
+      next(data["success"]);
+    }
   }
 
   

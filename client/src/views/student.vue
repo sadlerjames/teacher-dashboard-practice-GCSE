@@ -12,6 +12,7 @@
                 <p>Surname: {{ surname }}</p>
                 <p>DOB: {{ dob }}</p>
                 <p>Gender: {{ gender }}</p>
+                <p>{{ errorPersonalMessage }}</p>
                 <b-button
                   variant="danger"
                   v-on:click="personaledit = true, nonpersonaledit = false"
@@ -67,7 +68,79 @@
             </b-card>
           </b-col>
           <b-col>
-            <b-card title="Personal Details" style="max-width: 25rem;" class="mb-2">
+            <b-card title="School Details" style="max-width: 25rem;" class="mb-2">
+              <div id="non-school-edit" v-if="nonschooledit">
+                <p>School Email: {{ schoolEmail }}</p>
+                <p>Tutor Group: {{ tutorGroup }}</p>
+                <p>ID: {{ id }}</p>
+                <p>{{ errorSchoolMessage }}</p>
+                <b-button
+                  variant="danger"
+                  v-on:click="schooledit = true, nonschooledit = false"
+                >Edit</b-button>
+              </div>
+
+              <div id="school-edit" v-if="schooledit">
+                <b-form @submit="onSchoolSubmit" @reset="onSchoolReset">
+                  <p>You can only change the tutor group!</p>
+                  <b-form-group id="input-group-1" label="Tutor Group:" label-for="input-1">
+                    <b-form-input
+                      id="input-1"
+                      v-model="schoolForm.tutorGroup"
+                      type="text"
+                      required
+                      placeholder="Enter New Tutor Group"
+                    ></b-form-input>
+                  </b-form-group>
+                  <b-button type="submit" variant="primary">Update</b-button>
+                  <b-button type="reset" variant="danger">Cancel</b-button>
+                </b-form>
+              </div>
+            </b-card>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-card title="Home Details" style="max-width: 25rem;" class="mb-2">
+              <div id="non-home-edit" v-if="nonhomeedit">
+                <p>Home Address: {{ homeAddress }}</p>
+                <p>Home Phone: {{ homePhone }}</p>
+                <p>{{ errorHomeMessage }}</p>
+                <b-button
+                  variant="danger"
+                  v-on:click="homeedit = true, nonhomeedit = false"
+                >Edit</b-button>
+              </div>
+
+              <div id="home-edit" v-if="homeedit">
+                <b-form @submit="onHomeSubmit" @reset="onHomeReset">
+                  <b-form-group id="input-group-1" label="Home Address:" label-for="input-1">
+                    <b-form-input
+                      id="input-1"
+                      v-model="homeForm.homeAddress"
+                      type="text"
+                      required
+                      placeholder="Enter New Home Address"
+                    ></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group id="input-group-2" label="Home Phone:" label-for="input-2">
+                    <b-form-input
+                      id="input-2"
+                      v-model="homeForm.homePhone"
+                      type="text"
+                      required
+                      placeholder="Enter New Home Phone Number"
+                    ></b-form-input>
+                  </b-form-group>
+                  <b-button type="submit" variant="primary">Update</b-button>
+                  <b-button type="reset" variant="danger">Cancel</b-button>
+                </b-form>
+              </div>    
+            </b-card>
+          </b-col>
+          <b-col>
+            <b-card title="Generate Report" style="max-width: 25rem;" class="mb-2">
               <p>Forename: {{ forename }}</p>
               <p>Surname: {{ surname }}</p>
               <p>DOB: {{ dob }}</p>
@@ -114,12 +187,28 @@ export default {
       error: false,
       nonpersonaledit: true,
       personaledit: false,
+      nonschooledit: true,
+      schooledit: false,
+      nonhomeedit: true,
+      homeedit: false,
       personalMessage: "",
+      schoolMessage: "",
+      homeMessage: "",
+      errorPersonalMessage: "",
+      errorSchoolMessage: "",
+      errorHomeMessage: "",
       personalForm: {
         forename: "",
         surname: "",
         dob: "",
         gender: ""
+      },
+      schoolForm: {
+        tutorGroup: ""
+      },
+      homeForm: {
+        homeAddress: "",
+        homePhone: ""
       }
     };
   },
@@ -173,7 +262,7 @@ export default {
             this.personalMessage =
               "Student's details were successfully updated!";
           } else {
-            this.personalMessage =
+            this.errorPersonalMessage =
               "The email/password that you entered was incorrect";
           }
         }
@@ -186,7 +275,51 @@ export default {
       this.personalForm.surname = this.surname;
       this.personalForm.dob = this.dob;
       this.personalForm.gender = this.gender;
+    },
+    onSchoolSubmit: function() {
+      student.schoolUpdate(
+        this.id,
+        this.schoolForm.tutorGroup,
+        data => {
+          if (data === true) {
+            this.schoolMessage =
+              "Student's details were successfully updated!";
+          } else {
+            this.errorSchoolMessage =
+              "Unfortunately, there was an error in updating the students details. Please try again!";
+          }
+        }
+      );
+    },
+    onSchoolReset: function() {
+      this.nonschooledit = true;
+      this.schooledit = false;
+      this.schoolForm.tutorGroup = this.tutorGroup;
+    },
+
+    onHomeSubmit: function() {
+      student.homeUpdate(
+        this.id,
+        this.homeForm.homePhone,
+        this.homeForm.homeAddress,
+        data => {
+          if (data === true) {
+            this.homeMessage =
+              "Student's details were successfully updated!";
+          } else {
+            this.errorHomeMessage =
+              "Unfortunately, there was an error in updating the students details. Please try again!";
+          }
+        }
+      );
+    },
+    onHomeReset: function() {
+      this.nonhomeedit = true;
+      this.homeedit = false;
+      this.homeForm.homeAddress = this.homeAddress;
+      this.homeForm.homePhone = this.homePhone;
     }
+    
   },
   beforeMount: function() {
     this.getStudentData();

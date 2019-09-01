@@ -18,5 +18,19 @@ module.exports = {
     });
     callback("success");
 
+  },
+  schoolUpdate: function (id, tutorGroup, callback) {    
+    let rawdata = fs.readFileSync('data.json');
+    let data = JSON.parse(rawdata);
+    let filtered = _.where(data['students'], { id: id });
+    let all = filtered[0];
+
+    all.tutorGroup = tutorGroup;
+
+    fs.writeFileSync('data.json', JSON.stringify(data, null, 2), (err) => {
+      if (err) throw err;
+    });
+    callback("success");
+
   }
 }
